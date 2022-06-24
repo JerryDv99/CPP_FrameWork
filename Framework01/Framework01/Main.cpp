@@ -7,31 +7,38 @@
 //  ** 연산자 오버로딩
 using namespace std;
 
-// ** 상속
-
 class Parent
 {
 protected:
-	int Number;
+	string Name;
 public:
-	virtual void Output() = 0;
+	void Output() { cout << Name << endl; }
 
-	Parent() {};
-	~Parent() {};
+	Parent() {}
+	Parent(string _str) : Name(_str) {}
 };
 
-class Child : public Parent	// Child는 Parent에게 상속받음
+class Child : public Parent
 {
 public:
-	void Output()
-	{
-		cout << Number << endl;	// 부모 클래스에서 상속간에 접근 가능한 protected 변수들 사용 가능
-	}
+	Child() {}
+	Child(string _str) : Parent(_str) {}
+};
+
+class Object : public Parent
+{
+public:
+	Object() {}
+	Object(string _str) : Parent(_str) {}
 };
 
 int main(void)
 {
-	
+	Child c = Child("Child");
+	c.Output();				// 부모의 함수 사용 가능
+	Object o = Object("Object");
+	o.Output();
+
 	return 0;
 }
 
@@ -173,3 +180,85 @@ int main(void)
 
 	return 0; // 별도의 호출이 없으면 소멸자는 프로그램 종료시 호출
 }*/
+
+/* 다형성
+class Parent
+{
+protected:
+	string Name;
+public:
+	virtual void Output() = 0;
+
+	Parent() {};
+	Parent(string _str) : Name(_str) {};
+};
+
+class Child : public Parent	// Child는 Parent에게 상속받음
+{
+public:
+	void Output()
+	{
+		cout << Name << endl;	// 부모 클래스에서 상속간에 접근 가능한 protected 변수들 사용 가능
+	}
+public:
+	Child() {}
+	Child(string _str) : Parent(_str) {}
+};
+
+class Object : public Parent
+{
+public:
+	void Output()
+	{
+		cout << Name << endl;
+	}
+public:
+	Object(string _str) : Parent(_str) {}
+};
+
+
+// ** 다형성
+Parent* p[2];
+
+p[0] = new Child("Child");
+p[1] = new Object("Object");
+
+for (int i = 0; i < 2; ++i)
+	p[i]->Output();
+*/
+
+// ** 상속
+/*
+class Parent
+{
+protected:
+	string Name;
+public:
+	void Output() { cout << Name << endl; }
+
+	Parent() {}
+	Parent(string _str) : Name(_str) {}
+};
+
+class Child : public Parent
+{
+public:
+	Child() {}
+	Child(string _str) : Parent(_str) {}
+};
+
+class Object : public Parent
+{
+public:
+	Object() {}
+	Object(string _str) : Parent(_str) {}
+};
+
+
+
+
+Child c = Child("Child");
+	c.Output();				// 부모의 함수 사용 가능
+	Object o = Object("Object");
+	o.Output();
+*/
