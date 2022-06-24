@@ -1,18 +1,22 @@
 #include <iostream> // c++ 스타일 표준 입출력 라이브러리
-
+#include <Windows.h>
 
 
 //  ** 가상함수 & 순수가상함수
-//  ** 오버로딩 & 오버라이딩
 //  ** 연산자 오버로딩
 using namespace std;
 
+//  ** 오버로딩 & 오버라이딩 
+// 오버로딩 : 같은 영역에서 같은 이름이라도 매개변수의 개수와 형태에 따라 다르게 사용 가능
+// 오버라이딩 : [상속관계일 때] 이름이 같은 함수 중 어떤 함수를 호출할 것인가는 클래스 형태에 따름, 자식 클래스의 함수 재정의
+//  ** 상속 & 다형성
 class Parent
 {
 protected:
 	string Name;
 public:
-	void Output() { cout << Name << endl; }
+	virtual void Output()PURE;
+	virtual void Output(string _str)PURE;
 
 	Parent() {}
 	Parent(string _str) : Name(_str) {}
@@ -21,6 +25,9 @@ public:
 class Child : public Parent
 {
 public:
+	void Output() { cout << "Child : " << Name << endl; }	
+	void Output(string _str) override { cout << "Child : " << Name << endl; }
+public:
 	Child() {}
 	Child(string _str) : Parent(_str) {}
 };
@@ -28,16 +35,18 @@ public:
 class Object : public Parent
 {
 public:
+	void Output() { cout << "Object : " << Name << endl; }
+	void Output(string _str) override { cout << "Object : " << Name << endl; }
+public:
 	Object() {}
 	Object(string _str) : Parent(_str) {}
 };
 
 int main(void)
 {
-	Child c = Child("Child");
-	c.Output();				// 부모의 함수 사용 가능
-	Object o = Object("Object");
-	o.Output();
+	Parent* p[2];
+	p[0] = new Child("홍길동");
+	p[1] = new Object("임꺽정"); 
 
 	return 0;
 }
@@ -261,4 +270,37 @@ Child c = Child("Child");
 	c.Output();				// 부모의 함수 사용 가능
 	Object o = Object("Object");
 	o.Output();
+*/
+
+//  ** 오버로딩 & 오버라이딩 
+//  ** 상속 & 다형성
+/*
+class Parent
+{
+protected:
+	string Name;
+public:
+	virtual void Output()PURE; // virtual은 new 할당한 개체의 함수를 사용하게 해줌, 가상함수는 0(=0)일 수 있다 -> 순수 가상함수 PURE
+
+	Parent() {}
+	Parent(string _str) : Name(_str) {}
+};
+
+class Child : public Parent
+{
+public:
+	void Output() { cout << "Child : " << Name << endl; }	// virtual을 써주지 않아도 가상함수로 인식
+public:
+	Child() {}
+	Child(string _str) : Parent(_str) {}
+};
+
+class Object : public Parent
+{
+public:
+	void Output() { cout << "Object : " << Name << endl; }
+public:
+	Object() {}
+	Object(string _str) : Parent(_str) {}
+};
 */
