@@ -1,52 +1,70 @@
 #include <iostream> // c++ 스타일 표준 입출력 라이브러리
 #include <Windows.h>
 
-
 //  ** 가상함수 & 순수가상함수
-//  ** 연산자 오버로딩
 using namespace std;
 
-//  ** 오버로딩 & 오버라이딩 
-// 오버로딩 : 같은 영역에서 같은 이름이라도 매개변수의 개수와 형태에 따라 다르게 사용 가능
-// 오버라이딩 : [상속관계일 때] 이름이 같은 함수 중 어떤 함수를 호출할 것인가는 클래스 형태에 따름, 자식 클래스의 함수 재정의
-//  ** 상속 & 다형성
-class Parent
-{
-protected:
-	string Name;
-public:
-	virtual void Output()PURE;
-	virtual void Output(string _str)PURE;
 
-	Parent() {}
-	Parent(string _str) : Name(_str) {}
-};
+//  ** 연산자 오버로딩
 
-class Child : public Parent
+// ** Operator
+class Object
 {
+private:
+	int Number;
 public:
-	void Output() { cout << "Child : " << Name << endl; }	
-	void Output(string _str) override { cout << "Child : " << Name << endl; }
-public:
-	Child() {}
-	Child(string _str) : Parent(_str) {}
-};
+	int GetNumber() { return Number; }
+	/*
+	Object& operator+=(Object& _obj) // operator는 연산자 오버로딩을 쓰게 만들어주는 연산자
+	{
+		this->Number += _obj.Number;
+		return (*this);
+	}
+	Object& operator+=(int _number) 
+	{
+		this->Number += _number; // this : 객체 자신을 가리키는 포인터
+		return (*this);
+	}
+	*/
+	Object& operator / (Object& _obj)
+	{
+		this->Number = this->Number / _obj.Number;
+		return (*this);
+	}
+	/*Object& operator ++(Object& _obj)
+	{
+		++this->Number;
+		return(*this);
+	}*/
+	Object& operator+(Object& _obj)
+	{
+		return Object(this->Number + _obj.Number);
+		/*this->Number = this->Number + _obj.Number;
+		return (*this);*/
+	}
+	/*Object& operator = (Object& _obj)
+	{
+		this->Number = _obj.Number;
+		return(*this);
+	}*/
 
-class Object : public Parent
-{
-public:
-	void Output() { cout << "Object : " << Name << endl; }
-	void Output(string _str) override { cout << "Object : " << Name << endl; }
 public:
 	Object() {}
-	Object(string _str) : Parent(_str) {}
+	Object(int _number) : Number(_number) {}
+	~Object() {}
+	
 };
 
 int main(void)
 {
-	Parent* p[2];
-	p[0] = new Child("홍길동");
-	p[1] = new Object("임꺽정"); 
+	Object o1(4), o2(2);
+	// o1 += o2;
+	Object o3 = o1 + o2;
+	//o1 + 7;
+	//++o1;
+	//o1 / o2;
+
+	cout << o3.GetNumber() << endl;
 
 	return 0;
 }
@@ -272,7 +290,9 @@ Child c = Child("Child");
 	o.Output();
 */
 
-//  ** 오버로딩 & 오버라이딩 
+//  ** 오버로딩 & 오버라이딩
+// 오버로딩 : 같은 영역에서 같은 이름이라도 매개변수의 개수와 형태에 따라 다르게 사용 가능
+// 오버라이딩 : [상속관계일 때] 이름이 같은 함수 중 어떤 함수를 호출할 것인가는 클래스 형태에 따름, 자식 클래스에서의 함수 재정의
 //  ** 상속 & 다형성
 /*
 class Parent
@@ -284,12 +304,15 @@ public:
 
 	Parent() {}
 	Parent(string _str) : Name(_str) {}
+	virtual void Output()PURE;
+	virtual void Output(string _str)PURE;
 };
 
 class Child : public Parent
 {
 public:
 	void Output() { cout << "Child : " << Name << endl; }	// virtual을 써주지 않아도 가상함수로 인식
+	void Output(string _str) override { cout << "Child : " << Name << endl; }
 public:
 	Child() {}
 	Child(string _str) : Parent(_str) {}
@@ -299,8 +322,49 @@ class Object : public Parent
 {
 public:
 	void Output() { cout << "Object : " << Name << endl; }
+	void Output(string _str) override { cout << "Object : " << Name << endl; }
 public:
 	Object() {}
 	Object(string _str) : Parent(_str) {}
 };
+main
+Parent* p[2];
+	p[0] = new Child("홍길동");
+	p[1] = new Object("임꺽정");
+
 */
+/*
+	int i = 10;
+	cout << (i << 1) << endl; // 비트연산이라 빠르다
+	cout << (i * 2) << endl;
+
+	cout << endl;
+
+	cout << (i >> 1) << endl; **
+	cout << (i / 2) << endl;
+	*/
+
+	// ** [&] 사용 용도
+
+	// ** 1. 2항 연산자로 사용 
+	//		- & <- 1번만 쓰였다면 [비트연산]
+	//		- && <- 2번 쓰였다면 [비교(논리)연산]
+
+	// ** 2. 단항 연산자로 사용 
+	//		- &변수  <- 변수 앞쪽에 붙은 경우 [주소반환 연산자]
+	//		- 자료형(형태)& <- 자료형 뒤쪽에 붙은 경우 [레퍼런스 연산자]
+	//						  값을 복사하지 않고 해당 자료형 자체를 사용
+	/*
+	int Add(const int _i)
+	{
+		return _i + 1;
+	}
+
+	int main(void)
+	{
+		int i = 10;
+		int n = Add(i);
+		cout << n << endl;
+		return 0;
+	}
+	*/
