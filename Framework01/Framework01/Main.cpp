@@ -1,73 +1,25 @@
 #include <iostream> // c++ 스타일 표준 입출력 라이브러리
 #include <Windows.h>
 
-//  ** 가상함수 & 순수가상함수
 using namespace std;
 
 
-//  ** 연산자 오버로딩
 
-// ** Operator
-class Object
-{
-private:
-	int Number;
-public:
-	int GetNumber() { return Number; }
-	/*
-	Object& operator+=(Object& _obj) // operator는 연산자 오버로딩을 쓰게 만들어주는 연산자
-	{
-		this->Number += _obj.Number;
-		return (*this);
-	}
-	Object& operator+=(int _number) 
-	{
-		this->Number += _number; // this : 객체 자신을 가리키는 포인터
-		return (*this);
-	}
-	*/
-	Object& operator / (Object& _obj)
-	{
-		this->Number = this->Number / _obj.Number;
-		return (*this);
-	}
-	/*Object& operator ++(Object& _obj)
-	{
-		++this->Number;
-		return(*this);
-	}*/
-	Object& operator+(Object& _obj)
-	{
-		return Object(this->Number + _obj.Number);
-		/*this->Number = this->Number + _obj.Number;
-		return (*this);*/
-	}
-	/*Object& operator = (Object& _obj)
-	{
-		this->Number = _obj.Number;
-		return(*this);
-	}*/
 
-public:
-	Object() {}
-	Object(int _number) : Number(_number) {}
-	~Object() {}
-	
-};
 
 int main(void)
 {
-	Object o1(4), o2(2);
-	// o1 += o2;
-	Object o3 = o1 + o2;
-	//o1 + 7;
-	//++o1;
-	//o1 / o2;
-
-	cout << o3.GetNumber() << endl;
+	
 
 	return 0;
 }
+
+
+
+
+
+
+
 
 //  [class] 5가지 특징 (OOP : Object-oriented programming) 객체지향 프로그래밍
 
@@ -368,3 +320,62 @@ Parent* p[2];
 		return 0;
 	}
 	*/
+	// ** 연산자 오버로딩
+	// ** Operator
+	/*
+	class Object
+	{
+	private:
+		int Number;
+	public:
+		int GetNumber() { return Number; }
+		Object& operator+=(Object& _obj) // operator는 연산자 오버로딩을 쓰게 만들어주는 연산자
+		{
+			this->Number += _obj.Number;
+			return (*this);
+		}
+		Object& operator+=(int _number)
+		{
+			this->Number += _number; // this : 객체 자신을 가리키는 포인터
+			return (*this);
+		}
+		Object& operator / (Object& _obj)
+		{
+			this->Number = this->Number / _obj.Number;
+			return (*this);
+		}
+		Object& operator ++(Object& _obj)
+		{
+			++this->Number;
+			return(*this);
+		}
+		Object& operator+(Object& _obj)
+		{
+			return Object(this->Number + _obj.Number);
+			this->Number = this->Number + _obj.Number;
+			return (*this);
+		}
+		Object& operator = (Object& _obj)
+		{
+			this->Number = _obj.Number;
+			return(*this);
+		}
+
+	public:
+		Object() {}
+		Object(int _number) : Number(_number) {}
+		~Object() {}
+
+	};
+	*/
+
+	/*
+		Object o1(4), o2(2);
+		// o1 += o2;
+		Object o3 = o1 + o2;
+		//o1 + 7;
+		//++o1;
+		//o1 / o2;
+
+		cout << o3.GetNumber() << endl;
+		*/

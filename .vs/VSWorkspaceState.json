@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Framework01",
-    "\\Framework01\\Framework01",
-    "\\Framework02"
+    "\\Framework01\\Framework01"
   ],
-  "SelectedNode": "\\Framework01\\Framework01\\Main.cpp",
+  "SelectedNode": "\\Framework01\\Framework01.sln",
   "PreviewInSolutionExplorer": false
 }
