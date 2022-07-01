@@ -3,17 +3,13 @@
 
 class Object
 {
-private:
-	int Time;
-	int Minute;
-	int Second;
 public:
-	void Start();
-	void Update();
-	void Render();
-	void Release();
+	virtual void Start()PURE;
+	virtual void Update()PURE;
+	virtual void Render()PURE;
+	virtual void Release()PURE;
 public:
 	Object();
-	~Object();
+	virtual ~Object();
 };
 
