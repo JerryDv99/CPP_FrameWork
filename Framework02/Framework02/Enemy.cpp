@@ -1,9 +1,9 @@
 #include "Enemy.h"
-#include "Singleton.h"
 
 Enemy::Enemy()
 {
 }
+
 Enemy::~Enemy()
 {
 }

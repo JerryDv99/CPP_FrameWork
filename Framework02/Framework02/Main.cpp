@@ -1,10 +1,8 @@
 #include "Headers.h"
 #include "MainUpdate.h"
-#include "Singleton.h"
 
 
 
-Singleton* Singleton::Instance = nullptr;	// private인 Instance를 런타임 이전 초기화시켜 새 Instance가 힙에 생성되어 전역에서 접근가능
 
 
 int main(void)
@@ -17,7 +15,7 @@ int main(void)
 	
 	while (true)
 	{
-		if (Time + 1000 <= GetTickCount64())
+		if (Time + 100 <= GetTickCount64())
 		{
 			Time = GetTickCount64();
 			system("cls");
@@ -33,8 +31,3 @@ int main(void)
 	return 0;
 }
 
-// ** DWORD unsigned long
-// ** ULONGLONG unsigned __int64 
-// DWORD dwTime = GetTickCount();
-//				1 / 1000초	max 49일
-//				1 / 1000초	max 500년

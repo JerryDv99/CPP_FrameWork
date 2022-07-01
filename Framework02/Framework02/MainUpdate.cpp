@@ -1,9 +1,8 @@
 #include "MainUpdate.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "Singleton.h"
+#include "SceneManager.h"
 
-MainUpdate::MainUpdate()
+
+MainUpdate::MainUpdate() : Count(0)
 {
 
 }
@@ -14,28 +13,20 @@ MainUpdate::~MainUpdate()
 
 void MainUpdate::Start()
 {
-	pPlayer = new Player;
-	pPlayer->Start();
-
-	pEnemy = new Enemy;
-	pEnemy->Start();
+	SceneManager::GetInstance()->SetScene(SCENEID::LOGO);
 }
 
 void MainUpdate::Update()
 {
-	pPlayer->Update();
+	
 }
 
 void MainUpdate::Render()
 {
-	pPlayer->Render();
+	
 }
 
 void MainUpdate::Release()
 {
-	delete pPlayer;
-	pPlayer = nullptr;
-
-	delete pEnemy;
-	pEnemy = nullptr;
+	
 }
