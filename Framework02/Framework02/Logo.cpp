@@ -13,12 +13,15 @@ Logo::~Logo()
 
 void Logo::Start()
 {
-
+	Count = 0;
 }
 
 void Logo::Update()
 {
-	SceneManager::GetInstance()->SetScene(SCENEID::MENU);
+	Count++;
+
+	if (Count >= 50)
+		SceneManager::GetInstance()->SetScene(SCENEID::MENU);
 }
 
 void Logo::Render()

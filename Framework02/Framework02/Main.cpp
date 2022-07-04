@@ -20,10 +20,7 @@ int main(void)
 			Time = GetTickCount64();
 			system("cls");
 
-			// ** 변경사항 및 충돌 등의 이벤트 체크
 			Main.Update();
-
-			// ** 그리기
 			Main.Render();			
 		}
 	}

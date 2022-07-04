@@ -44,7 +44,18 @@ void SceneManager::SetScene(SCENEID _State)
 	SceneState->Start();
 }
 
-void SceneManager::Start()
+void SceneManager::Update()
 {
+	SceneState->Update();
+}
 
+void SceneManager::Render()
+{
+	SceneState->Render();
+}
+
+void SceneManager::Release()
+{
+	delete SceneState;
+	SceneState = nullptr;
 }
