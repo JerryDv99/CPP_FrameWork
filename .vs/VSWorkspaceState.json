@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Framework01",
-    "\\Framework01\\Framework01"
+    "\\Framework01\\Framework01",
+    "\\Framework02",
+    "\\Framework02\\Framework02"
   ],
-  "SelectedNode": "\\Framework01\\Framework01\\Main.cpp",
+  "SelectedNode": "\\Framework02\\Framework02\\SceneManager.h",
   "PreviewInSolutionExplorer": false
 }
