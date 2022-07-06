@@ -15,6 +15,7 @@ struct Vector3
 		return Vector3(x - _V1.x, y - _V1.y, z - _V1.z);
 	}
 
+
 	Vector3 operator+(Vector3 _V1)
 	{
 		return Vector3(x + _V1.x, y + _V1.y, z + _V1.z);
