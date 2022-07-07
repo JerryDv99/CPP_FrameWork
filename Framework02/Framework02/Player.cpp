@@ -1,5 +1,7 @@
 #include "Player.h"
+#include "Bullet.h"
 #include "InputManager.h"
+#include "ObjectManager.h"
 
 Player::Player()
 {
@@ -36,7 +38,9 @@ void Player::Update()
 		Info.Position.x++;
 
 	if (dwKey & KEY_SPACE)
-		cout << "KEY_SPACE" << endl;
+	{
+		
+	}
 
 	if (dwKey & KEY_RETURN)
 		cout << "KEY_RETURN" << endl;

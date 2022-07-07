@@ -6,6 +6,7 @@ class Stage : public Scene
 {
 private:
 	Object* pPlayer;
+	Object* pEnemy;
 public:
 	virtual void Start()override;
 	virtual void Update()override;

@@ -46,6 +46,15 @@
     <Filter Include="소스 파일\99.Manager\InputManager">
       <UniqueIdentifier>{ff94a704-d1cc-49c8-b220-bf3ffb8cb1e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\99.Manager\ObjectManager">
+      <UniqueIdentifier>{65615563-4f07-4492-8bd6-21f7bcb954b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Object\Bullet">
+      <UniqueIdentifier>{d31357c8-022a-45ea-9ad2-e6a74c2c4514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Include">
+      <UniqueIdentifier>{75dbe7d1-9b53-424d-8df8-e5ed1543b68a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainUpdate.cpp">
@@ -81,6 +90,12 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>소스 파일\99.Manager\InputManager</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\99.Manager\ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>소스 파일\01.Object\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainUpdate.h">
@@ -113,17 +128,23 @@
     <ClInclude Include="Stage.h">
       <Filter>소스 파일\02. Scene\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Enum.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>소스 파일\99.Manager\InputManager</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>소스 파일\99.Manager\ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>소스 파일\01.Object\Bullet</Filter>
+    </ClInclude>
     <ClInclude Include="Constant.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>헤더 파일\Include</Filter>
     </ClInclude>
     <ClInclude Include="Struct.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
