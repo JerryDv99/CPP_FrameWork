@@ -3,8 +3,6 @@
 
 class Bullet : public Object
 {
-private:
-	Object* pBullet[128];
 public:
 	virtual void Start()override;
 	virtual void Update()override;
@@ -12,6 +10,6 @@ public:
 	virtual void Release()override;
 public:
 	Bullet();
-	~Bullet();
+	virtual ~Bullet();
 };
 

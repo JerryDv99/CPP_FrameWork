@@ -15,8 +15,11 @@ public:
 	}
 private:
 	Object* pBullet[128];
+	Object* pPlayer;
+	Object* pEnemy;
 public:
-	Object* Start();
+	void CreateObject();
+	void Start();
 	void Update();
 	void Render();
 	void Release();

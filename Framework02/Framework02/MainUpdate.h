@@ -5,8 +5,6 @@ class Object;
 
 class MainUpdate
 {
-private:
-	
 public:
 	void Start();	// 초기화
 	void Update();	// 변경사항 및 충돌 등의 이벤트 체크
