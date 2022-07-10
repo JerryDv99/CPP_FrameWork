@@ -26,7 +26,7 @@ void Logo::Update()
 
 void Logo::Render()
 {
-	cout << "Logo : " << endl;
+	cout << "Logo" << endl;
 }
 
 void Logo::Release()

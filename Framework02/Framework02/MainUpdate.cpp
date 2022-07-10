@@ -14,7 +14,7 @@ MainUpdate::~MainUpdate()
 
 void MainUpdate::Start()
 {
-	SceneManager::GetInstance()->SetScene(SCENEID::STAGE);
+	SceneManager::GetInstance()->SetScene(SCENEID::LOGO);
 }
 
 void MainUpdate::Update()
