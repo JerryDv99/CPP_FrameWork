@@ -14,8 +14,12 @@ public:
 	}
 private:
 	DWORD dwKey;
+	float Power;
+	bool Check;
 public:
 	void CheckKey();
+	bool GetCheck() { return Check; }
+	int GetPower() { return Power; }
 	DWORD GetKey() { return dwKey; }
 private:
 	InputManager();

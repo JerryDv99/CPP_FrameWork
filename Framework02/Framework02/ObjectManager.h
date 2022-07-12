@@ -18,7 +18,7 @@ private:
 	Object* pPlayer;
 	Object* pEnemy;
 public:
-	void CreateObject(int _StateIndex);
+	void CreateObject(int _StateIndex, float _Power = 0);
 	void Start();
 	void Update();
 	void Render();

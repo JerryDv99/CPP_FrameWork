@@ -33,6 +33,12 @@ int Bullet::Update()
 		Info.Position += Info.Direction * 0.025f;
 	}
 		break;
+	case 2:
+	{
+		Info.Position += Info.Direction * (0.025f * Power);
+
+		break;
+	}
 	}
 
 	if ((Info.Position.x <= 0 || Info.Position.x >= 150 ||
@@ -52,6 +58,9 @@ void Bullet::Render()
 		break;
 	case 1:
 		CursorManager::GetInstance()->SetCursorPosition(Info.Position, (char*)"*", 12);
+		break;
+	case 2:
+		CursorManager::GetInstance()->SetCursorPosition(Info.Position, (char*)"^", 10);
 		break;
 	}
 }

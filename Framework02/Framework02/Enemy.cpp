@@ -2,7 +2,7 @@
 #include "ObjectManager.h"
 #include "CursorManager.h"
 
-Enemy::Enemy()
+Enemy::Enemy() : Time(0), Count(0)
 {
 }
 
