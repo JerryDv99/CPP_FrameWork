@@ -40,7 +40,6 @@ void InputManager::CheckKey()
 	{
 		if (Power < 5)
 			Power += 0.5f;
-		CursorManager::GetInstance()->SetCursorPosition(10.0f, 10.0f, Power);
 	}
 
 	if (Check && !(GetAsyncKeyState(VK_SPACE) & 0x8000))
