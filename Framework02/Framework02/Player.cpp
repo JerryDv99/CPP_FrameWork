@@ -50,12 +50,12 @@ int Player::Update()
 
 void Player::Render()
 {
-	CursorManager::GetInstance()->SetCursorPosition(Info.Position, (char*)"¡â");
+	CursorManager::GetInstance()->WriteBuffer(Info.Position, (char*)"¡â");
 	if (InputManager::GetInstance()->GetCheck())
 	{
 		for (int i = 0; i < Power; ++i)
 		{
-			CursorManager::GetInstance()->SetCursorPosition(Info.Position.x + 4, Info.Position.y - i, (char*)"¡á", 10);
+			CursorManager::GetInstance()->WriteBuffer(Info.Position.x + 4, Info.Position.y - i, (char*)"¡á", 10);
 		}
 	}
 	

@@ -4,6 +4,9 @@
 
 int main(void)
 {
+	system("title 홍길동 : 게임이름");
+	system("mode con cols = 150 lines = 40");
+
 	MainUpdate Main;
 	Main.Start();
 
@@ -11,13 +14,13 @@ int main(void)
 	
 	while (true)
 	{
-		if (Time + 100 <= GetTickCount64())
+		if (Time <= GetTickCount64())
 		{
-			Time = GetTickCount64();
 			system("cls");
 
 			Main.Update();
 			Main.Render();			
+			Time = GetTickCount64();
 		}
 	}
 

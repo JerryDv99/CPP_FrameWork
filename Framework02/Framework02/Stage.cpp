@@ -1,6 +1,8 @@
 #include "Stage.h"
 #include "SceneManager.h"
 #include "ObjectManager.h"
+#include "CursorManager.h"
+
 
 Stage::Stage()
 {

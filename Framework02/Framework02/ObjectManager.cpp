@@ -102,7 +102,7 @@ void ObjectManager::Update()
 				pPlayer->GetTransform(),
 				pBullet[i]->GetTransform()) && !((Bullet*)pBullet[i])->GetIndex() == 2)
 			{
-				CursorManager::GetInstance()->SetCursorPosition(0.0f, 0.0f, (char*)"충돌입니다");
+				CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f, (char*)"충돌입니다");
 				result = 1;
 			}
 			
@@ -112,7 +112,7 @@ void ObjectManager::Update()
 					pEnemy->GetTransform(),
 					pBullet[i]->GetTransform()) && ((Bullet*)pBullet[i])->GetIndex() == 2)
 				{
-					CursorManager::GetInstance()->SetCursorPosition(0.0f, 1.0f, (char*)"Enemy 충돌", 12);
+					CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"Enemy 충돌", 12);
 					result = 1;
 				}
 			}			

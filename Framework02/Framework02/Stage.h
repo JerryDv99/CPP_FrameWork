@@ -3,6 +3,8 @@
 
 class Stage : public Scene
 {
+private:
+	char* Array[40];
 public:
 	virtual void Start()override;
 	virtual void Update()override;

@@ -1,5 +1,4 @@
 #include "InputManager.h"
-#include "CursorManager.h"
 
 InputManager* InputManager::Instance = nullptr;
 
