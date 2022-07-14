@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "CollisionManager.h"
 #include "CursorManager.h"
+#include "MathManager.h"
+#include "ObjectFactory.h"
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
@@ -24,17 +26,16 @@ void ObjectManager::CreateObject(int _StateIndex, float _Power)
 	{
 		if (pBullet[i] == nullptr)
 		{
-			pBullet[i] = new Bullet;
-			pBullet[i]->Start();
-			
+			pBullet[i] = ObjectFactory::CreateBullet();		
 
 			switch (_StateIndex)
 			{
 			case 0:
 			{
 				pBullet[i]->SetPosition(74.0f, 1.0f);
-				Vector3 Direction = pPlayer->GetPosition() - pBullet[i]->GetPosition();
+				Vector3 Direction = MathManager::GetDirection(pBullet[i]->GetPosition(), pPlayer->GetPosition());
 				pBullet[i]->SetDirection(Direction);
+				//Vector3 Direction = pPlayer->GetPosition() - pBullet[i]->GetPosition();
 				((Bullet*)pBullet[i])->SetIndex(_StateIndex);
 				((Bullet*)pBullet[i])->SetTime(GetTickCount64());
 			}
@@ -65,11 +66,8 @@ void ObjectManager::CreateObject(int _StateIndex, float _Power)
 
 void ObjectManager::Start()
 {
-	pPlayer = new Player;
-	pPlayer->Start();
-	
-	pEnemy = new Enemy;
-	pEnemy->Start();
+	pPlayer = ObjectFactory::CreatePlayer();
+	pEnemy = ObjectFactory::CreateEnemy();
 }
 
 void ObjectManager::Update()
