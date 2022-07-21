@@ -12,4 +12,3 @@ public:
 	MainUpdate();
 	~MainUpdate();
 };
-
