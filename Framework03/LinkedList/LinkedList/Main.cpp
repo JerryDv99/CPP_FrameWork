@@ -101,7 +101,19 @@ void push_back(Node* _pList, int _Value)
 
 	_pList->Value = Temp;*/	
 
+	Node* pNode = _pList;
 
+	while (true)
+	{
+		if (pNode != nullptr)
+		{
+			pNode = pNode->Back;
+		}
+		else
+		{
+
+		}
+	}
 
 	/*
 	if (_pList->Back == nullptr)
