@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 struct Node
 {
 	Node* Front;
@@ -63,11 +62,10 @@ int main(void)
 	for (int i = 0; i < 10; ++i)
 		push_back(pList, (i + 2) * 10);
 
-	//erase(pList, 3);
+	erase(pList, 3);
 	insert(pList, 3, 25);
 
 	Output(pList);
-
 	return 0;
 }
 
@@ -105,16 +103,27 @@ void push_back(Node* _pList, int _Value)
 
 	while (true)
 	{
-		if (pNode != nullptr)
+		if (pNode->Back == nullptr)
 		{
-			pNode = pNode->Back;
+			Node* ppNode = new Node;
+
+			ppNode->Front = pNode;
+			//cout << "입력 : "; cin >> _pList->Value;
+
+			ppNode->Value = _Value;
+			ppNode->Back = nullptr;
+
+			pNode->Back = ppNode;
+
+			Size += 1;
+			break;
 		}
 		else
 		{
-
+			pNode = pNode->Back;
 		}
 	}
-
+	
 	/*
 	if (_pList->Back == nullptr)
 	{
@@ -134,10 +143,35 @@ void push_back(Node* _pList, int _Value)
 	else
 		push_back(_pList->Back, _Value);
 	*/
+	
 }
 
 void insert(Node* _pList, int _Where, int _Value)
 {
+	Node* pNode = _pList;
+	int Where = _Where;
+	while (true)
+	{
+		if (Size >= Where && Where == 1)
+		{
+			Node* ppNode = new Node;
+			ppNode->Value = _Value;
+
+			ppNode->Front = pNode->Front;
+			pNode->Front->Back = ppNode;
+			ppNode->Back = pNode;
+			pNode->Front = ppNode;
+
+			Size += 1;
+			break;
+		}
+		else
+		{
+			Where -= 1;
+			pNode = pNode->Back;
+		}
+	}
+	/*
 	if (Size >= _Where && _Where == 1)
 	{
 		Node* pNode = new Node;
@@ -152,10 +186,32 @@ void insert(Node* _pList, int _Where, int _Value)
 	}
 	else
 		insert(_pList->Back, _Where - 1, _Value);
+	*/
 }
 
 void erase(Node* _pList, int _Where)
 {
+	Node* pNode = _pList;
+	int Where = _Where;
+
+	while (true)
+	{
+		if (Size >= Where && Where == 1)
+		{
+			pNode->Back->Front = pNode->Front;
+			pNode->Front->Back = pNode->Back;
+
+
+			delete pNode;
+			break;
+		}
+		else
+		{
+			pNode = pNode->Back;
+			Where -= 1;
+		}
+	}
+	/*
 	if (Size >= _Where && _Where == 1)
 	{
 		// 노드 연결
@@ -167,4 +223,5 @@ void erase(Node* _pList, int _Where)
 	}
 	else
 		erase(_pList->Back, _Where - 1);
+	*/
 }

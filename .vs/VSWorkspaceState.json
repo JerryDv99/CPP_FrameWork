@@ -4,8 +4,10 @@
     "\\Framework01",
     "\\Framework01\\Framework01",
     "\\Framework02",
-    "\\Framework02\\Framework02"
+    "\\Framework02\\Framework02",
+    "\\Framework03",
+    "\\Framework03\\LinkedList"
   ],
-  "SelectedNode": "\\Framework02\\Framework02\\CollisionManager.h",
+  "SelectedNode": "\\Framework03\\LinkedList\\LinkedList.sln",
   "PreviewInSolutionExplorer": false
 }
