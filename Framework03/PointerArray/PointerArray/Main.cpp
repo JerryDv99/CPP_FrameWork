@@ -104,7 +104,7 @@ public:
 			}
 			for (int i = _where - 1; i < m_size; ++i)
 				Value[i] = Temp[i];
-			Value[m_size - 1] = 0;
+			m_size -= 1;
 		}
 	}
 	void clear()
@@ -234,7 +234,7 @@ int main(void)
 	Numbers.insert(3, 25);
 	Numbers.insert(10, 95);
 
-	for (int i = 0; i < Numbers.size() - 1; ++i)
+	for (int i = 0; i < Numbers.size(); ++i)
 	{		
 		Numbers.Output(i);
 		cout << endl;
