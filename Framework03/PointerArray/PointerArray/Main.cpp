@@ -224,7 +224,9 @@ int main(void)
 	}
 
 	Numbers.front();// 첫번째 원소 가리키는 함수
+	cout << endl;
 	Numbers.back();	// 마지막
+	cout << endl;
 
 	Numbers.erase(5); //선택 삭제
 	//Numbers.clear(); //전체 삭제
@@ -235,6 +237,7 @@ int main(void)
 	for (int i = 0; i < Numbers.size() - 1; ++i)
 	{		
 		Numbers.Output(i);
+		cout << endl;
 	}
 	cout << "size : " << Numbers.size() << endl;
 	cout << "capacity : " << Numbers.capacity() << endl;
