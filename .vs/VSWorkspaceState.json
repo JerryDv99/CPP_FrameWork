@@ -3,11 +3,11 @@
     "",
     "\\Framework01",
     "\\Framework01\\Framework01",
-    "\\Framework02",
-    "\\Framework02\\Framework02",
     "\\Framework03",
-    "\\Framework03\\LinkedList"
+    "\\Framework03\\LinkedList",
+    "\\Framework03\\PointerArray",
+    "\\Framework03\\PointerArray\\PointerArray"
   ],
-  "SelectedNode": "\\Framework03\\LinkedList\\LinkedList.sln",
+  "SelectedNode": "\\Framework01\\Framework01\\Main.cpp",
   "PreviewInSolutionExplorer": false
 }
