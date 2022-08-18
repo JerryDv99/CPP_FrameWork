@@ -6,6 +6,7 @@
 
 using namespace std;
 
+/*
 namespace std
 {
 	template<typename T1, typename T2>
@@ -16,8 +17,12 @@ namespace std
 		T2 Value;		
 	};
 }
+*/
+
+
 int main(void)
 {
+	/*
 	{
 		map<string, int> Number;
 
@@ -31,20 +36,19 @@ int main(void)
 		// µ¥ÀÌÅÍ »ğÀÔ 2
 		Number["ÀÌ¸ù·æ"] = 38;
 
-		// ÀÌÁøÆ®¸®
-
+		// find
 		map<string, int>::iterator iter = Number.find("ÀÌ¸ù·æ");
-
 		cout << iter->second << endl;
 	}
+	*/
 
 	{
 		{
-			map<string, list<int>> Number;
+			//map<string, list<int>> Number;
 		}
 	
 		{
-			map<string, vector<int>> Number;
+			//map<string, vector<int>> Number;
 		}
 	
 		{
@@ -52,12 +56,14 @@ int main(void)
 
 			for (int i = 0; i < 10; ++i)
 			{
-				Number.push_back
-				Number[0].insert(make_pair(32, "È«±æµ¿"));
+				map<int, string> Temp;
+				Temp.insert(make_pair(i, "È«±æµ¿ÀÓ²©Á¤"));
+				Number.push_back(Temp);
 				
 				map<int, string>::iterator iter = Number[i].find(i);
 
-				iter->second
+				if (!Number.empty())
+					cout << iter->second.find("Á¤") << endl;
 			}
 		}
 	}
