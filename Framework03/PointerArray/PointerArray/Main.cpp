@@ -60,7 +60,7 @@ public:
 			else
 				m_capacity += (m_capacity * 0.5f);
 
-			int* Temp = new T[sizeof(T) * m_size];
+			int* Temp = new T[m_size];
 
 			for (int i = 0; i < m_size; ++i)
 				Temp[i] = Value[i];
@@ -83,27 +83,15 @@ public:
 		if (_where < m_size)
 			cout << Value[_where] << endl;
 	}
-	void front()
-	{
-		if(m_size != 0)
-			cout << "첫 번째 원소 : " << Value[0] << endl;
-	}
-	void back()
-	{
-		if (m_size != 0)
-			cout << "마지막 원소 : " << Value[m_size - 1] << endl;
-	}
+	T front() const { return Value[0]; }
+	T back() const 	{ return Value[m_size - 1]	}
 	void erase(int _where)
 	{
 		if (m_size >= _where)
 		{
-			int* Temp = new T[sizeof(T) * m_size];
 			for (int i = _where - 1; i < m_size; ++i)
-			{
-				Temp[i] = Value[i + 1];
-			}
-			for (int i = _where - 1; i < m_size; ++i)
-				Value[i] = Temp[i];
+				Value[i] = Value[i + 1];
+
 			m_size -= 1;
 		}
 	}
@@ -111,41 +99,45 @@ public:
 	{
 		delete Value;
 		m_size = 0;
-		m_capacity = 0;
+		Value = nullptr;
 	}
+
 	void insert(int _where, int _value)
 	{
 		if (m_size >= _where)
 		{
-			int* Temp = new T[sizeof(T) * m_size + 1];
-			for (int i = _where - 1; i < m_size; ++i)
-				Temp[i + 1] = Value[i];
-			Value[_where - 1] = _value;
-			if (m_size + 1 >= m_capacity)
+			if ((m_size + 1) >= m_capacity)
 			{
-				m_capacity += (m_capacity * 0.5f);
+				if (m_capacity < 3)
+					m_capacity += 1;
+				else
+					m_capacity += (m_capacity * 0.5f);
 
-				int* Temp1 = new T[sizeof(T) * m_size];
+				int* Temp = new T[m_size];
 
 				for (int i = 0; i < m_size; ++i)
-					Temp1[i] = Value[i];
+					Temp[i] = Value[i];
 
 				delete Value;
 
 				Value = new T[sizeof(T) * m_capacity];
 
 				for (int i = 0; i < m_size; ++i)
-					Value[i] = Temp1[i];
+					Value[i] = Temp[i];
 			}
-			for (int i = _where; i < m_size + 1; ++i)
-				Value[i] = Temp[i];
+
 			m_size += 1;
+
+			for (int i = m_size; i > (_where - 1); --i)
+				Value[i] = Value[i - 1];
+
+			Value[_where - 1] = _value;
 		}
 	}
 public:
 	vector() 
 	{ 
-		Value = new T[sizeof(T)]; 
+		Value = new T[m_capacity]; 
 		m_size = 0;
 		m_capacity = 0;
 	}

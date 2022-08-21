@@ -68,8 +68,6 @@ int main(void)
 		Numbers.push_back(40);
 		Numbers.push_back(50);
 
-		list<int>::iterator iter = Numbers.begin();
-
 		for (list<int>::iterator iter = Numbers.begin();
 			iter != Numbers.end(); ++iter)
 			cout << *iter << endl;
@@ -111,6 +109,7 @@ int main(void)
 
 		// 반복자가 있는 위치의 원소를 삭제하고 다음 반복자 반환
 		//iter = Numbers.erase(iter);
+
 
 		// 첫번째 원소 삭제
 		//Numbers.pop_front();
@@ -220,6 +219,42 @@ int main(void)
 
 		// 배열처럼 접근 가능
 		//Numbers[Index]
+		
+		/*
+		// int
+		{
+			for (int i = 0; i < 10; ++i)
+				Numbers.push_back(i * 10 + 10);
+			for (int i = 0; i < 10; ++i)
+				cout << Numbers[i] << endl;
+		}
+		cout << endl;
+		*/
+
+		/*
+		// size_t
+		{
+			for (int i = 0; i < 10; ++i)
+				Numbers.push_back(i * 10 + 10);
+			for (size_t i = 0; i < Numbers.size(); ++i)
+				cout << Numbers[i] << endl;
+		}
+		cout << endl;
+		*/
+
+		/*
+		// iterator
+		{
+			for (int i = 0; i < 10; ++i)
+				Numbers.push_back(i * 10 + 10);
+
+			for (vector<int>::iterator iter = Numbers.begin();
+				iter != Numbers.end(); ++iter)
+				cout << *iter << endl;
+		}
+		cout << endl;
+		*/
+
 
 		// ** 리스트에 값이 있는지 없는지 (비었는지) 확인 
 		//Numbers.empty();

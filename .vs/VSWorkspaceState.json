@@ -1,13 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Framework01",
-    "\\Framework01\\Framework01",
-    "\\Framework03",
-    "\\Framework03\\LinkedList",
-    "\\Framework03\\PointerArray",
-    "\\Framework03\\PointerArray\\PointerArray"
+    ""
   ],
-  "SelectedNode": "\\Framework01\\Framework01\\Main.cpp",
+  "SelectedNode": "\\PointerArray.sln",
   "PreviewInSolutionExplorer": false
 }
