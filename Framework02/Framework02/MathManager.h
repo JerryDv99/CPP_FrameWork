@@ -10,7 +10,7 @@ public:
 		float Width = _A_Point.x - _B_Point.x;
 		float Height = _A_Point.y - _B_Point.y;
 
-		return sqrt((Width * Width) + (Height * Height));
+		return sqrt((float)pow(Width, 2) + (float)pow(Height, 2));
 	}
 
 	// 방향 구하는 함수
@@ -19,7 +19,7 @@ public:
 		float Width = _Target.x - _Current.x;
 		float Height = _Target.y - _Current.y;
 
-		float Distance = sqrt((Width * Width) + (Height * Height));
+		float Distance = sqrt((float)pow(Width, 2) + (float)pow(Height, 2));
 
 		return Vector3(Width / Distance, Height / Distance);
 	}
