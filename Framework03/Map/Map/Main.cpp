@@ -118,9 +118,7 @@ int main(void)
 						ObjectList.insert(make_pair(pObj->GetKey(), TempList));
 					}
 					else
-					{
 						iter->second.push_back(pObj);
-					}
 				}
 
 				cout << "** 입력 종료 **" << endl << endl;
@@ -203,7 +201,9 @@ int main(void)
 				{
 					Key = "";
 
-					srand(GetTickCount64());
+					Target = nullptr;
+
+					srand(GetTickCount64() * ((rand() + 100) % rand() + 1));
 
 					Position = Vector3(
 						rand() % 50 + 1,
@@ -211,7 +211,9 @@ int main(void)
 				}
 				void Render() {
 					cout << "X : " << Position.x << endl;
-					cout << "Y : " << Position.y << endl; }
+					cout << "Y : " << Position.y << endl; 
+				}
+
 			public:
 				string GetKey() const { return Key; }
 				Vector3 GetPosition() const { return Position; }
@@ -222,6 +224,8 @@ int main(void)
 
 			Object* Player = new Object;
 			Player->SetPosition(25.0f, 25.0f);
+
+
 			multimap<float, Object*> ObjectList;
 
 			for (int i = 0; i < 5; ++i)
@@ -241,7 +245,7 @@ int main(void)
 
 				float D = sqrt((X * X) + (Y * Y));
 
-				ObjectList.insert(make_pair(3.0f, pObj));
+				ObjectList.insert(make_pair(D, pObj));
 			}
 
 			for (multimap<float, Object*>::iterator iter = ObjectList.begin();
