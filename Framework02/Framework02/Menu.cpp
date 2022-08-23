@@ -134,7 +134,7 @@ void Menu::Update()
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KEY_RETURN)
-		//SceneManager::GetInstance()->SetScene(SCENEID::STAGE);
+		SceneManager::GetInstance()->SetScene(SCENEID::STAGE);
 
 	if (dwKey & KEY_LEFT)
 	{
