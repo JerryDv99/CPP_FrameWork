@@ -4,6 +4,8 @@
 
 Bullet::Bullet()
 {
+	Index = 0;
+	Speed = 0;
 	Time = 0;
 }
 
@@ -13,6 +15,8 @@ Bullet::~Bullet()
 
 void Bullet::Start()
 {
+	Key = "Bullet";
+
 	Info.Position = Vector3(0.0f, 0.0f);
 	Info.Rotation = Vector3(0.0f, 0.0f);
 	Info.Scale = Vector3(1.0f, 1.0f);
@@ -28,7 +32,6 @@ int Bullet::Update()
 	switch (Index)
 	{
 	case 0:
-
 		Info.Position += Info.Direction * Speed;
 		break;
 	case 1:
@@ -37,11 +40,6 @@ int Bullet::Update()
 		Info.Position += Info.Direction * (Speed * 0.5f);
 	}
 		break;
-	case 2:
-	{
-		Info.Position += Info.Direction * (0.025f * Power);
-		break;
-	}
 	}
 
 	if ((Info.Position.x <= 0 || Info.Position.x >= 150 ||
@@ -61,9 +59,6 @@ void Bullet::Render()
 		break;
 	case 1:
 		CursorManager::GetInstance()->WriteBuffer(Info.Position, (char*)"*", 12);
-		break;
-	case 2:
-		CursorManager::GetInstance()->WriteBuffer(Info.Position, (char*)"^", 10);
 		break;
 	}
 }
