@@ -1,10 +1,14 @@
 #pragma once
 #include "Object.h"
 
+class Bridge;
 class Bullet : public Object
 {
 private:
+	Bridge* pBridge;
 	ULONGLONG Time;
+public:
+	void SetBridge(Bridge* _Bridge) { pBridge = _Bridge; }
 public:
 	virtual void Start()override;
 	virtual int Update()override;

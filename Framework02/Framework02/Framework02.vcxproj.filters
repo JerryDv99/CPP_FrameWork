@@ -67,6 +67,27 @@
     <Filter Include="소스 파일\99.Manager\ObjectFactory">
       <UniqueIdentifier>{ae0bc824-a784-40df-80f6-9bb2b54b5174}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.Object\Enemy\EnemyBridge">
+      <UniqueIdentifier>{341d193a-399d-4e44-b1e9-e922f4b885ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Object\Enemy\EnemyBridge\Goolops">
+      <UniqueIdentifier>{cd73e63d-f894-4cc9-9f65-95149e2ccc04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Object\Enemy\EnemyBridge\Mutant">
+      <UniqueIdentifier>{97560aca-ed93-4841-af2e-360c25b36372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Object\Enemy\EnemyBridge\Doomboo">
+      <UniqueIdentifier>{39b34cb0-5f95-4978-a340-a4dc7efb8d92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Object\Bullet\BulletBridge">
+      <UniqueIdentifier>{29d9a3d1-1446-4286-a9cf-95b9a19fab58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Object\Bullet\BulletBridge\IceBullet">
+      <UniqueIdentifier>{98f151f8-d501-453e-9a8c-2ce78b7bb2c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Object\Bullet\BulletBridge\FireBullet">
+      <UniqueIdentifier>{85161c92-b766-4db4-b990-15d49e133983}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainUpdate.cpp">
@@ -110,6 +131,21 @@
     </ClCompile>
     <ClCompile Include="CursorManager.cpp">
       <Filter>소스 파일\99.Manager\CursorManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Goolops.cpp">
+      <Filter>소스 파일\01.Object\Enemy\EnemyBridge\Goolops</Filter>
+    </ClCompile>
+    <ClCompile Include="Mutant.cpp">
+      <Filter>소스 파일\01.Object\Enemy\EnemyBridge\Mutant</Filter>
+    </ClCompile>
+    <ClCompile Include="Doomboo.cpp">
+      <Filter>소스 파일\01.Object\Enemy\EnemyBridge\Doomboo</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBullet.cpp">
+      <Filter>소스 파일\01.Object\Bullet\BulletBridge\FireBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="IceBullet.cpp">
+      <Filter>소스 파일\01.Object\Bullet\BulletBridge\IceBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +208,30 @@
     </ClInclude>
     <ClInclude Include="ObjectFactory.h">
       <Filter>소스 파일\99.Manager\ObjectFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>소스 파일\99.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBridge.h">
+      <Filter>소스 파일\01.Object\Enemy\EnemyBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Goolops.h">
+      <Filter>소스 파일\01.Object\Enemy\EnemyBridge\Goolops</Filter>
+    </ClInclude>
+    <ClInclude Include="Mutant.h">
+      <Filter>소스 파일\01.Object\Enemy\EnemyBridge\Mutant</Filter>
+    </ClInclude>
+    <ClInclude Include="Doomboo.h">
+      <Filter>소스 파일\01.Object\Enemy\EnemyBridge\Doomboo</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBullet.h">
+      <Filter>소스 파일\01.Object\Bullet\BulletBridge\FireBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="IceBullet.h">
+      <Filter>소스 파일\01.Object\Bullet\BulletBridge\IceBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletBridge.h">
+      <Filter>소스 파일\01.Object\Bullet\BulletBridge</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

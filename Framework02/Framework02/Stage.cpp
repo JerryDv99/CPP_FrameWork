@@ -8,7 +8,7 @@
 #include "ObjectFactory.h"
 
 
-Stage::Stage() : EnemyTime(0)
+Stage::Stage() : EnemyTime(0), BulletTime(0)
 {
 
 }
@@ -34,18 +34,31 @@ void Stage::Update()
 
 	Result = (100 - Result);
 
-	Result = Result / 100;
-
-	
+	Result = Result / 100;	
 
 	if (EnemyTime + (2500 * Result) < GetTickCount64())
 	{
-		Object* pEnemy = ObjectFactory<Enemy>::CreateObject(148.0f, rand() % 39 + 1);
+		Object* pEnemy = ObjectFactory<Enemy>::CreateObject(rand() % 130 + 1, rand() % 39 + 1);
 
 		ObjectManager::GetInstance()->AddObject(pEnemy);
 
 		EnemyTime = GetTickCount64();
 	}
+
+	if (GetAsyncKeyState(VK_SPACE))
+	{
+		if (BulletTime + 200 < GetTickCount64())
+		{
+			Object* pBullet = ObjectFactory<Bullet>::CreateObject(rand() % 10 + 1, rand() % 39 + 1);
+
+			pBullet->SetDirection(Vector3(1.0, 0.0));
+
+			ObjectManager::GetInstance()->AddObject(pBullet);
+
+			BulletTime = GetTickCount64();
+		}
+	}
+
 	ObjectManager::GetInstance()->Update();
 }
 

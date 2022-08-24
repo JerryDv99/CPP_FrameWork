@@ -1,12 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Framework03",
-    "\\Framework03\\List_Vector",
-    "\\Framework03\\List_Vector\\List_Vector",
-    "\\Framework03\\Map",
-    "\\Framework03\\Map\\Map"
+    "\\Framework01",
+    "\\Framework01\\Framework01",
+    "\\Framework02",
+    "\\Framework02\\Framework02"
   ],
-  "SelectedNode": "\\Framework03\\List_Vector\\List_Vector\\Main.cpp",
+  "SelectedNode": "\\Framework02\\Framework02\\Stage.cpp",
   "PreviewInSolutionExplorer": false
 }
