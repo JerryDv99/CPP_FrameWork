@@ -8,7 +8,7 @@
 #include "ObjectFactory.h"
 
 
-Stage::Stage() : Time(0)
+Stage::Stage() : EnemyTime(0), BulletTime(0)
 {
 
 }
@@ -22,42 +22,43 @@ void Stage::Start()
 {
 	ObjectManager::GetInstance()->SetPlayer(ObjectFactory<Player>::CreateObject(150.f / 2, 40.f / 2));
 
-	Time = GetTickCount64();
+	EnemyTime = GetTickCount64();
 }
 
 void Stage::Update()
 {
-	srand(pow(GetTickCount64(), 2));
+	// 100 : 100 = player.x : x
 
-	if (GetAsyncKeyState(VK_TAB))
+	Vector3 PlayerPosition = ObjectManager::GetInstance()->GetPlayer()->GetPosition();
+	float Result = ((PlayerPosition.x * 100) / 100);
+
+	Result = (100 - Result);
+
+	Result = Result / 100;	
+
+	if (EnemyTime + (2500 * Result) < GetTickCount64())
 	{
-		if (Time + 250 < GetTickCount64())
-		{
-			Object* pBullet = ObjectFactory<Bullet>::CreateObject();
+		Object* pEnemy = ObjectFactory<Enemy>::CreateObject(rand() % 130 + 1, rand() % 39 + 1);
 
-			((Bullet*)pBullet)->SetIndex(1);
-			pBullet->SetTarget(
-				ObjectManager::GetInstance()->GetPlayer());
+		ObjectManager::GetInstance()->AddObject(pEnemy);
+
+		EnemyTime = GetTickCount64();
+	}
+
+	if (GetAsyncKeyState(VK_SPACE))
+	{
+		if (BulletTime + 200 < GetTickCount64())
+		{
+			Object* pBullet = ObjectFactory<Bullet>::CreateObject(rand() % 10 + 1, rand() % 39 + 1);
+
+			pBullet->SetDirection(Vector3(1.0, 0.0));
 
 			ObjectManager::GetInstance()->AddObject(pBullet);
 
-			Time = GetTickCount64();
+			BulletTime = GetTickCount64();
 		}
 	}
-	if (GetAsyncKeyState(VK_SPACE))
-	{
-		if (Time + 500 < GetTickCount64())
-		{
-			Object* pEnemy = ObjectFactory<Enemy>::CreateObject();
-			((Enemy*)pEnemy)->SetPosition(rand() % 150, rand() % 40);
 
-			pEnemy->SetTarget(ObjectManager::GetInstance()->GetPlayer());
-
-			ObjectManager::GetInstance()->AddObject(pEnemy);
-
-			Time = GetTickCount64();
-		}
-	}
 	ObjectManager::GetInstance()->Update();
 }
 
