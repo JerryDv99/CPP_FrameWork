@@ -16,11 +16,8 @@ Bullet::~Bullet()
 	Release();
 }
 
-void Bullet::Start()
+Object* Bullet::Start(string _Key)
 {
-	if (pBridge)
-		pBridge->Start();
-
 	Key = "Bullet";
 
 	Info.Position = Vector3(0.0f, 0.0f);
@@ -34,7 +31,8 @@ void Bullet::Start()
 
 	Time = GetTickCount64();
 
-	//Info.Direction = MathManager::GetDirection(Info.Position, Target->GetPosition());
+
+	return this;
 }
 
 int Bullet::Update()
