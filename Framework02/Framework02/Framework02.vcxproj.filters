@@ -88,6 +88,12 @@
     <Filter Include="소스 파일\01.Object\Bullet\BulletBridge\FireBullet">
       <UniqueIdentifier>{85161c92-b766-4db4-b990-15d49e133983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\99.Manager\Pattern">
+      <UniqueIdentifier>{a2d34b20-288b-4676-afd0-f529b8730f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99.Manager\Pattern\Prototype">
+      <UniqueIdentifier>{f0658bca-5231-4503-b2be-e41a4225b24b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainUpdate.cpp">
@@ -146,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="IceBullet.cpp">
       <Filter>소스 파일\01.Object\Bullet\BulletBridge\IceBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="PrototypeManager.cpp">
+      <Filter>소스 파일\99.Manager\Pattern\Prototype</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="BulletBridge.h">
       <Filter>소스 파일\01.Object\Bullet\BulletBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="PrototypeManager.h">
+      <Filter>소스 파일\99.Manager\Pattern\Prototype</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

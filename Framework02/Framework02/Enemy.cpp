@@ -18,20 +18,13 @@ Enemy::~Enemy()
 	Release();
 }
 
-void Enemy::Start()
+Object* Enemy::Start(string _Key)
 {
-	if(pBridge)
-		pBridge->Start();
 	Key = "Enemy";
 
-	Info.Position = Vector3(74.0f, 0.0f);
-	Info.Rotation = Vector3(0.0f, 0.0f);
-	Info.Scale = Vector3(2.0f, 1.0f);
-	Info.Direction = Vector3(-1.0f, 0.0f);
-
-	//Target = nullptr;
-	Speed = 0.2f;
 	Time = (GetTickCount64() - 7000);
+
+	return this;
 }
 
 int Enemy::Update()

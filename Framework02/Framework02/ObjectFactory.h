@@ -1,6 +1,7 @@
 #pragma once
 #include "Headers.h"
 
+/*
 template <typename T>
 class ObjectFactory
 {
@@ -34,3 +35,4 @@ public:
 		return pObject;
 	}
 };
+*/
