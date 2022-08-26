@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Framework01",
-    "\\Framework01\\Framework01",
-    "\\Framework02",
-    "\\Framework02\\Framework02"
+    ""
   ],
-  "SelectedNode": "\\Framework02\\Framework02\\Stage.cpp",
+  "SelectedNode": "\\Framework02.sln",
   "PreviewInSolutionExplorer": false
 }
