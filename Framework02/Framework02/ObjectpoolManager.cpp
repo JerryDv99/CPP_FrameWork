@@ -15,7 +15,7 @@ ObjectpoolManager::~ObjectpoolManager()
 void ObjectpoolManager::GetObject(string _Key)
 {
 	auto iter = DisableList.find(_Key);
-
+	disable list.size, key
 	if (iter == DisableList.end())
 	{
 		list<Object*> Temp;
