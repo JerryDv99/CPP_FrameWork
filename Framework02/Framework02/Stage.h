@@ -4,7 +4,7 @@
 class Stage : public Scene
 {
 private:
-	char* Array[40];
+	ULONGLONG Time;
 public:
 	virtual void Start()override;
 	virtual void Update()override;

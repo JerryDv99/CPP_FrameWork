@@ -9,10 +9,8 @@
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
-ObjectManager::ObjectManager() : pPlayer(nullptr), pEnemy(nullptr)
+ObjectManager::ObjectManager() : pPlayer(nullptr)
 {
-	for (int i = 0; i < 128; ++i)
-		pBullet[i] = nullptr;
 }
 
 ObjectManager::~ObjectManager()
@@ -20,122 +18,38 @@ ObjectManager::~ObjectManager()
 	Release();
 }
 
-void ObjectManager::CreateObject(int _StateIndex, float _Power)
+void ObjectManager::AddObject(Object* _Object)
 {
-	for (int i = 0; i < 128; ++i)
+	map<string, list<Object*>>::iterator iter = ObjectList.find(_Object->GetKey());
+
+	if (iter == ObjectList.end())
 	{
-		if (pBullet[i] == nullptr)
-		{
-			pBullet[i] = ObjectFactory::CreateBullet();		
+		list<Object*> Temp;
 
-			switch (_StateIndex)
-			{
-			case 0:
-			{
-				pBullet[i]->SetPosition(74.0f, 1.0f);
-				Vector3 Direction = MathManager::GetDirection(pBullet[i]->GetPosition(), pPlayer->GetPosition());
-				pBullet[i]->SetDirection(Direction);
-				//Vector3 Direction = pPlayer->GetPosition() - pBullet[i]->GetPosition();
-				((Bullet*)pBullet[i])->SetIndex(_StateIndex);
-				((Bullet*)pBullet[i])->SetTime(GetTickCount64());
-			}
-				break;
-			case 1:
-				pBullet[i]->SetPosition(74.0f, 1.0f);
-				pBullet[i]->SetTarget(pPlayer);
-				((Bullet*)pBullet[i])->SetIndex(_StateIndex);
-				((Bullet*)pBullet[i])->SetTime(GetTickCount64());
-				break;
-			case 2:
-			{
-				if (_Power != 0)
-				{
-					pBullet[i]->SetPosition(pPlayer->GetPosition());
-					Vector3 Direction = pEnemy->GetPosition() - pPlayer->GetPosition();
-					pBullet[i]->SetDirection(Direction);
-					((Bullet*)pBullet[i])->SetIndex(_StateIndex);
-					((Bullet*)pBullet[i])->SetPower(pPlayer->GetPower());
-					break;
-				}
-			}
-			}
-			break;
-		}
+		Temp.push_back(_Object);
+
+		ObjectList.insert(make_pair(_Object->GetKey(), Temp));
 	}
-}
-
-void ObjectManager::Start()
-{
-	pPlayer = ObjectFactory::CreatePlayer();
-	pEnemy = ObjectFactory::CreateEnemy();
+	else
+		iter->second.push_back(_Object);
 }
 
 void ObjectManager::Update()
 {
 	pPlayer->Update();
-	
 
-	int result = 0;
-
-	if (pEnemy)
-	{
-		pEnemy->Update();
-		if (CollisionManager::RectCollision(
-			pPlayer->GetTransform(),
-			pEnemy->GetTransform()))
-		{
-			delete pEnemy;
-			pEnemy = nullptr;
-		}
-	}
-	
-
-	for (int i = 0; i < 128; ++i)
-	{
-		if (pBullet[i])
-		{
-			result = pBullet[i]->Update();
-
-			if (CollisionManager::RectCollision(
-				pPlayer->GetTransform(),
-				pBullet[i]->GetTransform()) && !((Bullet*)pBullet[i])->GetIndex() == 2)
-			{
-				CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f, (char*)"충돌입니다");
-				result = 1;
-			}
-			
-			if (pEnemy)
-			{
-				if (CollisionManager::RectCollision(
-					pEnemy->GetTransform(),
-					pBullet[i]->GetTransform()) && ((Bullet*)pBullet[i])->GetIndex() == 2)
-				{
-					CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"Enemy 충돌", 12);
-					result = 1;
-				}
-			}			
-		}
-
-		if (result == 1)
-		{
-			delete pBullet[i];
-			pBullet[i] = nullptr;
-		}
-	}
+	for (auto iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
+		for (auto iter2 = iter->second.begin(); iter2 != iter->second.end(); ++iter2)
+			(*iter2)->Update();
 }
 
 void ObjectManager::Render()
 {
 	pPlayer->Render();
 
-	if(pEnemy)
-		pEnemy->Render();
-
-	for (int i = 0; i < 128; ++i)
-	{
-		if (pBullet[i])
-			pBullet[i]->Render();
-	}
+	for (auto iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
+		for (auto iter2 = iter->second.begin(); iter2 != iter->second.end(); ++iter2)
+			(*iter2)->Render();
 }
 
 void ObjectManager::Release()
@@ -143,15 +57,14 @@ void ObjectManager::Release()
 	delete pPlayer;
 	pPlayer = nullptr;
 
-	delete pEnemy;
-	pEnemy = nullptr;
-	
-	for (int i = 0; i < 128; ++i)
+	for (auto iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
 	{
-		if (pBullet[i])
+		for (auto iter2 = iter->second.begin(); iter2 != iter->second.end(); ++iter2)
 		{
-			delete pBullet[i];
-			pBullet[i] = nullptr;
+			delete (*iter2);
+			(*iter2) = nullptr;
 		}
+		iter->second.clear();
 	}
+	ObjectList.clear();
 }

@@ -6,7 +6,7 @@ class Object
 protected:
 	Transform Info;
 	Object* Target;
-	float Power;
+	string Key;
 public:
 	virtual void Start()PURE;
 	virtual int Update()PURE;
@@ -14,6 +14,8 @@ public:
 	virtual void Release()PURE;
 public:
 	Transform GetTransform() const { return Info; }
+	string GetKey() const { return Key; }
+	void SetKey(const string& _Key) { Key = _Key; }
 
 	Vector3 GetPosition() const { return Info.Position; }
 	void SetPosition(Vector3 _Position) { Info.Position = _Position; }
@@ -22,9 +24,6 @@ public:
 	void SetDirection(Vector3 _Position) { Info.Direction = _Position; }
 	void SetDirection(float _x, float _y) { Info.Direction = Vector3(_x, _y); }
 	void SetTarget(Object* _Target) { Target = _Target; }
-
-	void SetPower(float _Power) { Power = _Power; }
-	float  GetPower() const { return Power; }
 public:
 	Object();
 	virtual ~Object();
