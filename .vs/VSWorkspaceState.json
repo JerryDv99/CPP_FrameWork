@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Framework03",
-    "\\Framework03\\List_Vector",
-    "\\Framework03\\List_Vector\\List_Vector",
-    "\\Framework03\\Map",
-    "\\Framework03\\Map\\Map"
+    ""
   ],
-  "SelectedNode": "\\Framework03\\List_Vector\\List_Vector\\Main.cpp",
+  "SelectedNode": "\\Framework02.sln",
   "PreviewInSolutionExplorer": false
 }

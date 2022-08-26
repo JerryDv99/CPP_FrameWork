@@ -278,6 +278,16 @@ int main(void)
 		}
 		*/		
 	}
+
+	cout << "   __*_" << endl;
+	cout << "¦£\'LSPD`¦¡¦¤" << endl;
+	cout << "¦¦£ï¦¡¦¡£ï¦¥" << endl;
+	
+    cout << "        ¤Ó____" << endl;
+	cout << "        ¤Ó [ ]¡¬___" << endl;
+	cout << "  ¦£¦¡¦¡¤Ó        ¦¢" << endl;
+    cout << "  ¦¦£ï¦¡¦¡¦¡¦¡¦¡£ï¦¡¦¥" << endl;
+    
 	return 0;
 }
 
