@@ -16,7 +16,7 @@ MainUpdate::~MainUpdate()
 
 void MainUpdate::Start()
 {
-	CursorManager::GetInstance()->CreateBuffer(160.0f, 50.0f);
+	CursorManager::GetInstance()->CreateBuffer(150, 40);
 	PrototypeManager::GetInstance()->Initialize();
 	SceneManager::GetInstance()->SetScene(SCENEID::LOGO);
 }

@@ -6,8 +6,12 @@
 #include "ObjectFactory.h"
 #include "ObjectManager.h"
 
+Bridge* Bullet::BridgeList[2];
+
 Bullet::Bullet() : pBridge(nullptr)
 {
+	for (int i = 0; i < 2; ++i)
+		BridgeList[i] = nullptr;
 	Time = 0;
 }
 
@@ -18,46 +22,42 @@ Bullet::~Bullet()
 
 Object* Bullet::Start(string _Key)
 {
-	Key = "Bullet";
+	Key = _Key;
 
 	Info.Position = Vector3(0.0f, 0.0f);
 	Info.Rotation = Vector3(0.0f, 0.0f);
 	Info.Scale = Vector3(1.0f, 1.0f);
 	Info.Direction = Vector3(0.0f, 0.0f);
 
-	Speed = 0.5f;
+	Speed = 1.0f;
 
-	Target = nullptr;
+	BridgeList[BulletID_Fire] = new FireBullet;
+	BridgeList[BulletID_Ice] = new IceBullet;
 
 	Time = GetTickCount64();
-
 
 	return this;
 }
 
 int Bullet::Update()
 {	
-	Info.Position += Info.Direction * Speed;
+	Info.Position.x += 1;
 
+	
 	if (pBridge)
-	{
 		pBridge->Update(Info);
-		Time = GetTickCount64();
-	}
 	else
 	{
-		if (Time + 200 < GetTickCount64() && GetAsyncKeyState(VK_SPACE))
+		if (Time + 2000 < GetTickCount64())
 		{
-			Time = GetTickCount64();
-
 			srand(int(Time * GetTickCount64()));
 			switch (rand() % 2)
 			{
-			case 0:
-				pBridge = new FireBullet;
+			case BulletID_Fire:
+				pBridge = BridgeList[BulletID_Fire]->Clone();
 				break;
-			case 1:
-				pBridge = new IceBullet;
+			case BulletID_Ice:
+				pBridge = BridgeList[BulletID_Ice]->Clone();
 				break;
 			}
 			pBridge->Start();
@@ -65,8 +65,6 @@ int Bullet::Update()
 		}
 	}
 
-	if (Time + 2500 < GetTickCount64())
-		return 2;
 
 	if ((Info.Position.x <= 0 || Info.Position.x >= 150 ||
 		Info.Position.y <= 0 || Info.Position.y >= 40))
@@ -78,16 +76,20 @@ int Bullet::Update()
 
 void Bullet::Render()
 {
+	
 	if (pBridge)
 		pBridge->Render();
+	
 	//CursorManager::GetInstance()->WriteBuffer(Info.Position, (char*)"*", 12);
 }
 
 void Bullet::Release()
 {
+	
 	if (pBridge)
 	{
 		delete pBridge;
 		pBridge = nullptr;
 	}
+	
 }

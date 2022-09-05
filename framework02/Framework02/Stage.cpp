@@ -2,14 +2,15 @@
 #include "SceneManager.h"
 #include "ObjectManager.h"
 #include "CursorManager.h"
-#include "PrototypeManager.h"
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Player.h"
 #include "ObjectFactory.h"
+#include "PrototypeManager.h"
+#include "ScrollBox.h"
+#include "Skill.h"
 
-
-Stage::Stage() : EnemyTime(0), BulletTime(0)
+Stage::Stage() : EnemyTime(0)
 {
 
 }
@@ -21,24 +22,39 @@ Stage::~Stage()
 
 void Stage::Start()
 {
-	//ObjectManager::GetInstance()->SetPlayer(ObjectFactory<Player>::CreateObject(150.f / 2, 40.f / 2));
-
 	Object* pObj = PrototypeManager::GetInstance()->FindObject("Player")->Clone();
 
 	if (pObj != nullptr)
 		ObjectManager::GetInstance()->SetPlayer(pObj);
 
 	EnemyTime = GetTickCount64();
+
+	pSkill[0] = new Skill;
+	pSkill[0]->SetPosition(50, 5);
+	pSkill[0]->Start("Skill");
+
+	pSkill[1] = new Skill;
+	pSkill[1]->SetPosition(100, 5);
+	pSkill[1]->Start("Skill");
+
+	for (int i = 0; i < 20; ++i)
+		ObjectManager::GetInstance()->AddObject(Vector3(rand() % 150, rand() % 40), "Enemy");	
 }
 
 void Stage::Update()
 {
-	// 100 : 100 = player.x : x
+	UserInterface* Box = new ScrollBox;
+	Box->Start();
 
+	if (GetAsyncKeyState(VK_SPACE))
+	{
+		ObjectManager::GetInstance()->AddObject(ObjectManager::GetInstance()->GetPlayer()->GetPosition(), "Bullet");
+	}
+	/*
 	Vector3 PlayerPosition = ObjectManager::GetInstance()->GetPlayer()->GetPosition();
 	float Result = ((PlayerPosition.x * 100) / 100);
 	Result = (100 - Result);
-	Result = Result / 100;	
+	Result = Result / 100;
 
 	if (EnemyTime + (2500 * Result) < GetTickCount64())
 	{
@@ -48,25 +64,15 @@ void Stage::Update()
 
 		if (pEnemy != nullptr)
 		{
-			pEnemy->SetPosition(float (rand() % 130 + 1), float(rand() % 39 + 1));
+			pEnemy->SetPosition(
+				float(rand() % 148 + 1),
+				float(rand() % 39 + 1));
+
 			ObjectManager::GetInstance()->AddObject(pEnemy);
 		}
+
 		EnemyTime = GetTickCount64();
-	}
-
-	//if (GetAsyncKeyState(VK_SPACE))
-	//{
-	//	if (BulletTime + 200 < GetTickCount64())
-	//	{
-	//		Object* pBullet = ObjectFactory<Bullet>::CreateObject(rand() % 10 + 1, rand() % 39 + 1);
-
-	//		pBullet->SetDirection(Vector3(1.0, 0.0));
-
-	//		ObjectManager::GetInstance()->AddObject(pBullet);
-
-	//		BulletTime = GetTickCount64();
-	//	}
-	//}
+	}*/
 
 	ObjectManager::GetInstance()->Update();
 }
@@ -74,6 +80,9 @@ void Stage::Update()
 void Stage::Render()
 {
 	ObjectManager::GetInstance()->Render();
+
+	for (int i = 0; i < 2; ++i)
+		pSkill[i]->Render();
 }
 
 void Stage::Release()
