@@ -5,6 +5,8 @@ class Bridge;
 class Enemy : public Object
 {
 private:
+	static Bridge* BridgeList[EnemyID_MAX];
+private:
 	Bridge* pBridge;
 	ULONGLONG Time;
 public:

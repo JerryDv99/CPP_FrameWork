@@ -19,8 +19,9 @@ private:
 	// 비활성화된 오브젝트 리스트
 	map<string, list<Object*>> DisableList;
 public:
-	void GetObject(string _Key);
-	void SwitchingObject(Object* _Object);
+	bool FindObject(string _Key);
+	void AddObject(string _Key);
+	void SwitchingObject(string _Key, Vector3 _Position = Vector3());
 	void Update();
 	void Render();
 private:

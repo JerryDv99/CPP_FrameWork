@@ -3,13 +3,12 @@
 
 class BulletBridge : public Bridge
 {
-protected:
-	bool Check;
 public:
 	virtual void Start()PURE;
 	virtual int  Update(Transform& _Transform)PURE;
 	virtual void Render()PURE;
 	virtual void Release()PURE;
+
 public:
 	BulletBridge() {}
 	virtual ~BulletBridge() {}

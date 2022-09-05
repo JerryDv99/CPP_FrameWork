@@ -16,8 +16,6 @@ void FireBullet::Start()
 
 int FireBullet::Update(Transform& _Transform)
 {
-	/*if()
-	_Transform.Position--;*/
 	
 	return 0;
 }

@@ -8,9 +8,6 @@ public:
 	virtual void Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
-private:
-	ULONGLONG Time;
-	int Count;
 public:
 	Logo();
 	virtual ~Logo();

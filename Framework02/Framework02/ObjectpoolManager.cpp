@@ -1,5 +1,6 @@
 #include "ObjectpoolManager.h"
 #include "PrototypeManager.h"
+#include "CursorManager.h"
 #include "Object.h"
 
 ObjectpoolManager* ObjectpoolManager::Instance = nullptr;
@@ -12,45 +13,58 @@ ObjectpoolManager::~ObjectpoolManager()
 {
 }
 
-void ObjectpoolManager::GetObject(string _Key)
+bool ObjectpoolManager::FindObject(string _Key)
 {
 	auto iter = DisableList.find(_Key);
-	disable list.size, key
+
 	if (iter == DisableList.end())
-	{
-		list<Object*> Temp;
-		Temp.push_back(PrototypeManager::GetInstance()->FindObject(_Key)->Clone());
-		EnableList.insert(make_pair(_Key, Temp));
-	}
+		return false;
+
 	else
-	{
-		for (auto iter2 = iter->second.begin(); iter2 != iter->second.end();)
-		{
-			if ((*iter2)->GetKey() == _Key)
-			{
-				list<Object*> Temp;
-				Temp.push_back((*iter2));
-				EnableList.insert(make_pair(_Key, Temp));
-				break;
-			}
-			else
-				++iter2;
-		}
-	}	
+		return true;
 }
 
-void ObjectpoolManager::SwitchingObject(Object* _Object)
+void ObjectpoolManager::AddObject(string _Key)
 {
-	auto iter = DisableList.find(_Object->GetKey());
+	map<string, list<Object*>>::iterator iter = DisableList.find(_Key);
 
 	if (iter == DisableList.end())
 	{
-		list<Object*> Temp;
-		Temp.push_back(_Object);
-		DisableList.insert(make_pair(_Object->GetKey(), Temp));
+		list<Object*> Temp;		
+		DisableList.insert(make_pair(_Key, Temp));
+		iter = DisableList.find(_Key);
 	}
-	else
-		iter->second.push_back(_Object);
+
+	Object* pProtoObj = PrototypeManager::GetInstance()->FindObject(_Key);
+
+	for (int i = 0; i < 5; ++i)
+	{
+		if (pProtoObj)
+		{
+			Object* pObject = pProtoObj->Clone();
+			iter->second.push_back(pObject);
+		}
+		else
+		{
+			// Err : pProto에서 객체원본을 찾을 수 없다
+			return;
+		}
+	}
+}
+
+void ObjectpoolManager::SwitchingObject(string _Key, Vector3 _Position)
+{
+	map<string, list<Object*>>::iterator iter = DisableList.find(_Key);
+
+	if (iter->second.empty())
+		AddObject(_Key);
+	
+	Object* pObj = iter->second.back();
+	pObj->SetPosition(_Position);
+
+	EnableList[_Key].push_back(pObj);
+	iter->second.pop_back();
+	
 }
 
 void ObjectpoolManager::Update()
@@ -63,7 +77,7 @@ void ObjectpoolManager::Update()
 
 			if (Result)
 			{
-				SwitchingObject((*iter2));
+				DisableList[(*iter2)->GetKey()].push_back(*iter2);
 				iter2 = iter->second.erase(iter2);
 			}
 			else
@@ -74,6 +88,12 @@ void ObjectpoolManager::Update()
 
 void ObjectpoolManager::Render()
 {
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 0.0f, (char*)"DisableList : ");
+	CursorManager::GetInstance()->WriteBuffer(100.0f, 0.0f, (int)DisableList["Bullet"].size());
+
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 1.0f, (char*)"EnableList : ");
+	CursorManager::GetInstance()->WriteBuffer(100.0f, 1.0f, (int)EnableList["Bullet"].size());
+
 	for (auto iter = EnableList.begin(); iter != EnableList.end(); ++iter)
 	{
 		for (auto iter2 = iter->second.begin(); iter2 != iter->second.end(); ++iter2)

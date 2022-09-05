@@ -6,6 +6,7 @@
 #include "CursorManager.h"
 #include "MathManager.h"
 #include "ObjectFactory.h"
+#include "ObjectpoolManager.h"
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
@@ -18,53 +19,40 @@ ObjectManager::~ObjectManager()
 	Release();
 }
 
-void ObjectManager::AddObject(Object* _Object)
+void ObjectManager::AddObject(string _Key)
 {
-	map<string, list<Object*>>::iterator iter = ObjectList.find(_Object->GetKey());
+	if (!ObjectpoolManager::GetInstance()->FindObject(_Key))
+		ObjectpoolManager::GetInstance()->AddObject(_Key);
+	
+		
+	ObjectpoolManager::GetInstance()->SwitchingObject(_Key);
+}
 
-	if (iter == ObjectList.end())
-	{
-		list<Object*> Temp;
-
-		Temp.push_back(_Object);
-
-		ObjectList.insert(make_pair(_Object->GetKey(), Temp));
-	}
-	else
-		iter->second.push_back(_Object);
+void ObjectManager::AddObject(Vector3 _Position, string _Key)
+{
+	if (!ObjectpoolManager::GetInstance()->FindObject(_Key))
+		ObjectpoolManager::GetInstance()->AddObject(_Key);
+	
+		
+	ObjectpoolManager::GetInstance()->SwitchingObject(_Key, _Position);
 }
 
 void ObjectManager::Update()
 {
 	pPlayer->Update();
 
-	for (auto iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
-		for (auto iter2 = iter->second.begin(); iter2 != iter->second.end(); ++iter2)
-			(*iter2)->Update();
+	ObjectpoolManager::GetInstance()->Update();
 }
 
 void ObjectManager::Render()
 {
 	pPlayer->Render();
 
-	for (auto iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
-		for (auto iter2 = iter->second.begin(); iter2 != iter->second.end(); ++iter2)
-			(*iter2)->Render();
+	ObjectpoolManager::GetInstance()->Render();
 }
 
 void ObjectManager::Release()
 {
 	delete pPlayer;
 	pPlayer = nullptr;
-
-	for (auto iter = ObjectList.begin(); iter != ObjectList.end(); ++iter)
-	{
-		for (auto iter2 = iter->second.begin(); iter2 != iter->second.end(); ++iter2)
-		{
-			delete (*iter2);
-			(*iter2) = nullptr;
-		}
-		iter->second.clear();
-	}
-	ObjectList.clear();
 }

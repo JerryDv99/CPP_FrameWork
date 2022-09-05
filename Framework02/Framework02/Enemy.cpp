@@ -9,8 +9,12 @@
 #include "Mutant.h"
 #include "Doomboo.h"
 
+Bridge* Enemy::BridgeList[3];
+
 Enemy::Enemy() : pBridge(nullptr), Time(0)
 {
+	for (int i = 0; i < 3; ++i)
+		BridgeList[i] = nullptr;
 }
 
 Enemy::~Enemy()
@@ -20,37 +24,43 @@ Enemy::~Enemy()
 
 Object* Enemy::Start(string _Key)
 {
-	Key = "Enemy";
+	Key = _Key;
 
 	Time = (GetTickCount64() - 7000);
+
+	pBridge = nullptr;
+
+	BridgeList[EnemyID_Goolops] = new Goolops;
+	BridgeList[EnemyID_Mutant] = new Mutant;
+	BridgeList[EnemyID_Doomboo] = new Doomboo;
+
 
 	return this;
 }
 
 int Enemy::Update()
 {
+	Info.Position.x -= 1;
+
 	if (pBridge)
-	{
 		pBridge->Update(Info);
-		Time = GetTickCount64();
-	}
 	else
 	{
 		if (Time + 7000 < GetTickCount64())
 		{
-			Time = GetTickCount64();
-
 			srand(int(Time * GetTickCount64()));
 			switch (rand() % 3)
 			{
-			case 0:
-				pBridge = new Goolops;
+			case EnemyID_Goolops:
+				pBridge = BridgeList[EnemyID_Goolops]->Clone();
 				break;
-			case 1:
-				pBridge = new Mutant;
+
+			case EnemyID_Mutant:
+				pBridge = BridgeList[EnemyID_Mutant]->Clone();
 				break;
-			case 2:
-				pBridge = new Doomboo;
+
+			case EnemyID_Doomboo:
+				pBridge = BridgeList[EnemyID_Doomboo]->Clone();
 				break;
 			}
 			pBridge->Start();
@@ -73,7 +83,8 @@ int Enemy::Update()
 
 			Time = GetTickCount64();
 		}		
-	}*/
+	}
+	*/
 
 	if ((Info.Position.x <= 0 || Info.Position.x >= 150 ||
 		Info.Position.y <= 0 || Info.Position.y >= 40))
@@ -81,7 +92,6 @@ int Enemy::Update()
 		return 1;
 	}
 
-	Info.Position += Info.Direction * Speed;
 	return 0;
 }
 

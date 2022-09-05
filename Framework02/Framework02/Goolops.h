@@ -9,6 +9,9 @@ public:
 	virtual void Render()override;
 	virtual void Release()override;
 public:
+	virtual Bridge* Clone()override { return new Goolops(*this); }
+
+public:
 	Goolops();
 	virtual ~Goolops();
 };

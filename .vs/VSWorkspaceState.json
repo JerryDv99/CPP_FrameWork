@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Framework01",
+    "\\Framework01\\Framework01",
     "\\Framework02",
     "\\Framework02\\Framework02",
     "\\Framework03",
@@ -9,6 +11,6 @@
     "\\Framework03\\Map",
     "\\Framework03\\Map\\Map"
   ],
-  "SelectedNode": "\\Framework02\\Framework02\\Stage.cpp",
+  "SelectedNode": "\\Framework02\\Framework02\\ScrollBox.cpp",
   "PreviewInSolutionExplorer": false
 }

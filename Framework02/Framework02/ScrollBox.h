@@ -1,21 +1,19 @@
 #pragma once
-#include "Scene.h"
+#include "UserInterface.h"
 
-class Object;
-class Stage : public Scene
+class ScrollBox : public UserInterface
 {
 private:
-	Object* pSkill[2];
-	ULONGLONG EnemyTime;
+	int Width, Height;
+	string WidthTexture;
+	char*HeightTexture;
 public:
 	virtual void Start()override;
 	virtual void Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
 public:
-	Stage();
-	virtual ~Stage();
+	ScrollBox();
+	virtual ~ScrollBox();
 };
-
-
 

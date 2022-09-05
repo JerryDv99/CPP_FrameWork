@@ -5,8 +5,11 @@ class Bridge;
 class Bullet : public Object
 {
 private:
+	static Bridge* BridgeList[BulletID_MAX];
+private:
 	Bridge* pBridge;
 	ULONGLONG Time;
+	float Speed;
 public:
 	void SetBridge(Bridge* _Bridge) { pBridge = _Bridge; }
 public:

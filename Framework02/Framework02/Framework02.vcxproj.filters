@@ -97,6 +97,15 @@
     <Filter Include="소스 파일\99.Manager\ObjectpoolManager">
       <UniqueIdentifier>{410c0fa4-da61-4173-8cab-4daa74b117a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03.UserInterface">
+      <UniqueIdentifier>{35ea19ac-10e1-437e-9c73-4fba2825316c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.UserInterface\ScrollBox">
+      <UniqueIdentifier>{15fdefe1-8a97-42f1-a45e-bb10dd9f210c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Object\Skill">
+      <UniqueIdentifier>{03109be2-5a78-4384-bc30-c6a7bc1ce049}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainUpdate.cpp">
@@ -161,6 +170,15 @@
     </ClCompile>
     <ClCompile Include="ObjectpoolManager.cpp">
       <Filter>소스 파일\99.Manager\ObjectpoolManager</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>소스 파일\03.UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollBox.cpp">
+      <Filter>소스 파일\03.UserInterface\ScrollBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>소스 파일\01.Object\Skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +271,15 @@
     </ClInclude>
     <ClInclude Include="ObjectpoolManager.h">
       <Filter>소스 파일\99.Manager\ObjectpoolManager</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>소스 파일\03.UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollBox.h">
+      <Filter>소스 파일\03.UserInterface\ScrollBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>소스 파일\01.Object\Skill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
