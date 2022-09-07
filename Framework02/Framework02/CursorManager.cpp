@@ -158,7 +158,7 @@ void CursorManager::ClearBuffer()
 	DWORD dw = 0;
 
 	// 버퍼를 ' '라는 공백으로 채움
-	FillConsoleOutputCharacter(HBuffer[BufferIndex], ' ', 160 * 50, Coord, &dw);
+	FillConsoleOutputCharacter(HBuffer[BufferIndex], ' ', 150 * 40, Coord, &dw);
 }
 
 // 버퍼 해제
