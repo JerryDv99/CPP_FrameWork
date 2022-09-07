@@ -19,8 +19,7 @@ int main(void)
 			system("cls");
 
 			Main.Update();
-			Main.Render();			
-			Time = GetTickCount64();
+			Main.Render();
 		}
 	}
 
