@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "ObjectManager.h"
 #include "CursorManager.h"
+#include "InputManager.h"
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Player.h"
@@ -29,13 +30,22 @@ void Stage::Start()
 
 	EnemyTime = GetTickCount64();
 
-	pSkill[0] = new Skill;
-	pSkill[0]->SetPosition(50, 5);
-	pSkill[0]->Start("Skill");
+	const int Max = 5;
 
-	pSkill[1] = new Skill;
-	pSkill[1]->SetPosition(100, 5);
-	pSkill[1]->Start("Skill");
+	char* Texture[5][5] = {
+
+	};
+
+
+	for (int i = 0; i < Max; ++i)
+	{
+		Object* pSkill = new Skill;
+		pSkill->SetPosition(int(14 * i  + (150 - (14 * Max ))), 
+			int(39 - (7 * 0.5f)));
+		pSkill->Start("Skill");
+
+		pSkillList.push_back(pSkill);
+	}
 
 	for (int i = 0; i < 20; ++i)
 		ObjectManager::GetInstance()->AddObject(Vector3(rand() % 150, rand() % 40), "Enemy");	
@@ -43,13 +53,19 @@ void Stage::Start()
 
 void Stage::Update()
 {
+	DWORD dwKey = InputManager::GetInstance()->GetKey();
+
+	
+
+
+
 	UserInterface* Box = new ScrollBox;
 	Box->Start();
 
-	if (GetAsyncKeyState(VK_SPACE))
+	/*if (GetAsyncKeyState(VK_SPACE))
 	{
 		ObjectManager::GetInstance()->AddObject(ObjectManager::GetInstance()->GetPlayer()->GetPosition(), "Bullet");
-	}
+	}*/
 	/*
 	Vector3 PlayerPosition = ObjectManager::GetInstance()->GetPlayer()->GetPosition();
 	float Result = ((PlayerPosition.x * 100) / 100);
@@ -81,8 +97,11 @@ void Stage::Render()
 {
 	ObjectManager::GetInstance()->Render();
 
-	for (int i = 0; i < 2; ++i)
-		pSkill[i]->Render();
+	for (vector<Object*>::iterator iter = pSkillList.begin(); iter != pSkillList.end(); ++iter)
+	{
+		(*iter)->Render();
+
+	}
 }
 
 void Stage::Release()

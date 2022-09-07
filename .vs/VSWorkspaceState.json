@@ -4,13 +4,8 @@
     "\\Framework01",
     "\\Framework01\\Framework01",
     "\\Framework02",
-    "\\Framework02\\Framework02",
-    "\\Framework03",
-    "\\Framework03\\List_Vector",
-    "\\Framework03\\List_Vector\\List_Vector",
-    "\\Framework03\\Map",
-    "\\Framework03\\Map\\Map"
+    "\\Framework02\\Framework02"
   ],
-  "SelectedNode": "\\Framework02\\Framework02\\ScrollBox.cpp",
+  "SelectedNode": "\\Framework02\\Framework02\\ObjectpoolManager.cpp",
   "PreviewInSolutionExplorer": false
 }

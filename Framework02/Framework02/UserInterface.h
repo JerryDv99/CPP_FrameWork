@@ -10,6 +10,7 @@ protected:
 	string Key;
 	vector<string> Texture;
 	int End;
+	static int Index;
 public:
 	virtual void Start()PURE;
 	virtual void Update()PURE;
@@ -21,7 +22,7 @@ public:
 	void SetBoxSize(int _x, int _y)
 	{
 		if (_x % 2 == 1)
-			_x + 1;
+			_x += 1;
 
 		EndPos = Vector3(StartPos.x + _x, StartPos.y + _y);
 

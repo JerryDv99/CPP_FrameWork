@@ -30,6 +30,8 @@ void ScrollBox::Start()
 	WidthTexture = "";
 	HeightTexture = (char*)"¦¢";
 
+	ScrollBoxIndex = Index++;
+
 	Texture.push_back("¦£¦¡¦¤");
 	Texture.push_back("¦¢¡¡¦¢");
 	Texture.push_back("¦¦¦¡¦¥");
@@ -43,7 +45,16 @@ void ScrollBox::Update()
 
 void ScrollBox::Render()
 {
-	/*if (GetAsyncKeyState(VK_CONTROL))
+	for (int i = 0; i < Texture.size(); ++i)
+		CursorManager::GetInstance()->WriteBuffer(StartPos.x, StartPos.y + i, Texture[i], ScrollBoxIndex == i ? 12 : 15);
+}
+
+void ScrollBox::Release()
+{
+
+}
+
+/*if (GetAsyncKeyState(VK_CONTROL))
 	{
 		++Height;
 		Width += 2;
@@ -53,7 +64,7 @@ void ScrollBox::Render()
 	for (int y = StartPos.y  + 1; y < EndPos.y; ++y)
 	{
 		CursorManager::GetInstance()->WriteBuffer(StartPos.x, y, HeightTexture);
-		CursorManager::GetInstance()->WriteBuffer(EndPos.x, y, HeightTexture);			
+		CursorManager::GetInstance()->WriteBuffer(EndPos.x, y, HeightTexture);
 	}
 	CursorManager::GetInstance()->WriteBuffer(StartPos.x, StartPos.y, "¦£");
 	CursorManager::GetInstance()->WriteBuffer(StartPos.x + 2, StartPos.y, WidthTexture);
@@ -61,13 +72,3 @@ void ScrollBox::Render()
 	CursorManager::GetInstance()->WriteBuffer(StartPos.x + 2, EndPos.y, WidthTexture);
 	CursorManager::GetInstance()->WriteBuffer(EndPos.x, StartPos.y, "¦¤");
 	CursorManager::GetInstance()->WriteBuffer(EndPos.x, EndPos.y, "¦¥");*/
-
-	int n = 0;
-	for (vector<string>::iterator iter = Texture.begin(); iter != Texture.end(); ++iter, ++n)
-		CursorManager::GetInstance()->WriteBuffer(StartPos.x, StartPos.y + n, (*iter));
-}
-
-void ScrollBox::Release()
-{
-
-}
