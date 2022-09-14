@@ -90,4 +90,11 @@ int main(void)
 	cout << "戌式�鵃鵀’’’’’’’’它忙鵃鵀’’’﹝鵀�" << endl;
 
 
+    _bGGZ_ 
+  R!          !R 
+  B           `B 
+hQQQQQQU
+8QQ  QQ8
+8QQLJQQ8
+UQQQQQQU
 */
